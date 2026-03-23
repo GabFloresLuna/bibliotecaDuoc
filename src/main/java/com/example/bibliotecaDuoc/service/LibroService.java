@@ -37,4 +37,14 @@ public class LibroService
         libroRepository.eliminar(id);
         return "producto eliminado";
     }
+
+    public int totalLibrosV1()
+    {
+        return libroRepository.obtenerLibros().size();
+    }
+
+    public int totalLibrosV2()
+    {
+        return libroRepository.totalLibros();
+    }
 }

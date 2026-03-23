@@ -113,4 +113,9 @@ public class LibroRepository
 
         listaLibros.removeIf(x -> x.getId() == id);
     }
+
+    public int totalLibros() 
+    {
+        return listaLibros.size();
+    }
 }
