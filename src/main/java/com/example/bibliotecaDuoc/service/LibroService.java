@@ -1,0 +1,40 @@
+package com.example.bibliotecaDuoc.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.bibliotecaDuoc.repository.LibroRepository;
+import com.example.bibliotecaDuoc.model.Libro;
+import java.util.List;
+
+@Service
+public class LibroService 
+{
+    @Autowired
+    private LibroRepository libroRepository = new LibroRepository();
+
+    public List<Libro> getLibros() 
+    {
+        return libroRepository.obtenerLibros();
+    }
+
+    public Libro saveLibro(Libro libro)
+    {
+        return libroRepository.guardar(libro);
+    }
+
+    public Libro getLibroID(int id) 
+    {
+        return libroRepository.buscarPorId(id);
+    }
+
+    public Libro updateLibro(Libro libro)
+    {
+        return libroRepository.actualizar(libro);
+    }
+
+    public String deleteLibro(int id) 
+    {
+        libroRepository.eliminar(id);
+        return "producto eliminado";
+    }
+}
