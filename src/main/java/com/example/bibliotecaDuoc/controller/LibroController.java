@@ -31,7 +31,7 @@ public class LibroController
         return libroService.saveLibro(libro);
     }
     
-    @GetMapping("{id}")
+    @GetMapping("/id/{id}")
     public Libro buscarLibro(@PathVariable int id) 
     {
         return libroService.getLibroID(id);
@@ -55,4 +55,11 @@ public class LibroController
     {
         return libroService.totalLibrosV2();
     }
+
+    @GetMapping("/isbn/{isbn}")
+    public Libro buscarLibroIsbn(@PathVariable String isbn)
+    {
+        return libroService.getLibroIsbn(isbn);
+    }
+
 }
