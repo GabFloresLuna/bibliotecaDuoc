@@ -52,4 +52,9 @@ public class LibroService
     {
         return libroRepository.buscarLibroAno(ano);
     }
+
+    public List<Libro> getLibroAutor(String autor)
+    {
+        return libroRepository.buscarLibroAutor(autor);
+    }
 }

@@ -5,6 +5,7 @@ import com.example.bibliotecaDuoc.model.Libro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 @Repository
 public class LibroRepository 
 {
@@ -28,6 +29,12 @@ public class LibroRepository
         listaLibros.add(new Libro(8, "9780134685991", "Clean Architecture", "Prentice Hall", 2017, "Robert C. Martin"));
         listaLibros.add(new Libro(9, "9780201633610", "Design Patterns", "AddisonWesley", 1994, "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides"));
         listaLibros.add(new Libro(10, "9780132350884", "Clean Code", "Prentice Hall", 2008, "Robert C. Martin"));
+    }
+
+    // Buscar libro por autor
+    public List<Libro> buscarLibroAutor(String autor)
+    {
+        return listaLibros.stream().filter( l -> l.getAutor().equalsIgnoreCase(autor)).collect(Collectors.toList());
     }
 
     // Buscar libro por año
