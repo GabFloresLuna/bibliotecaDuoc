@@ -91,12 +91,13 @@ public class LibroRepository
     //metodo para eliminar el libro mediante id
     public void eliminar(int id) 
     {
+        //opcion1
         Libro libro = buscarPorId(id);
         if (libro != null)
         {
             listaLibros.remove(libro);
         }
-    
+        //opcion2
         int idPosicion = 0;
          for (int i = 0; i < listaLibros.size(); i++)
         {
@@ -110,7 +111,7 @@ public class LibroRepository
         {
             listaLibros.remove(idPosicion);
         }
-
+        //opcion3
         listaLibros.removeIf(x -> x.getId() == id);
     }
 
