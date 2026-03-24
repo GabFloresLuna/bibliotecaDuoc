@@ -62,4 +62,9 @@ public class LibroController
         return libroService.getLibroIsbn(isbn);
     }
 
+    @GetMapping("/anio/{anio}")
+    public List<Libro> buscarLibrosAnio(@PathVariable int anio)
+    {
+        return libroService.getLibrosano(anio);
+    }
 }

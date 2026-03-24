@@ -47,4 +47,9 @@ public class LibroService
     {
         return libroRepository.buscarPorIsbn(isbn);
     }
+
+    public List<Libro> getLibrosano(int ano)
+    {
+        return libroRepository.buscarLibroAno(ano);
+    }
 }

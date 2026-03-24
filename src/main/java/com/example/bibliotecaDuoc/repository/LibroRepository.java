@@ -3,12 +3,13 @@ package com.example.bibliotecaDuoc.repository;
 import org.springframework.stereotype.Repository;
 import com.example.bibliotecaDuoc.model.Libro;
 
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class LibroRepository 
 {
     // Arreglo que guardara todos los libros
-    private List<Libro> listaLibros = new java.util.ArrayList<>();
+    private List<Libro> listaLibros = new ArrayList<>();
 
     //Método que retorna todos los libros
     public List<Libro> obtenerLibros()
@@ -29,16 +30,29 @@ public class LibroRepository
         listaLibros.add(new Libro(10, "9780132350884", "Clean Code", "Prentice Hall", 2008, "Robert C. Martin"));
     }
 
+    // Buscar libro por año
+    public List<Libro> buscarLibroAno(int ano)
+    {
+        List<Libro> librosano = new ArrayList<>();
+        for (Libro libro : listaLibros)
+        {
+            if(libro.getFechaPublicacion() == ano)
+            {
+                librosano.add(libro);
+            }
+        }
+        return librosano;
+    }
     // Buscar un libro por su id
     public Libro buscarPorId(int id) 
     {
         for (Libro libro : listaLibros)
+        {
+            if (libro.getId() == id)
             {
-                if (libro.getId() == id)
-                    {
-                        return libro;
-                    }
+                return libro;
             }
+        }
         return null;
     }
 
