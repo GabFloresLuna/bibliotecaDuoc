@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @RestController
 @RequestMapping("/api/v1/libros")
 public class LibroController 
@@ -74,6 +75,24 @@ public class LibroController
     public List<Libro> buscarLibrosAutor(@PathVariable String autor) 
     {
         return libroService.getLibroAutor(autor);
+    }
+    
+    @GetMapping("/antiguos")
+    public List<Libro> buscarLibrosAntiguos()
+    {
+        return libroService.getLibrosAntiguos();
+    }
+
+    @GetMapping("/recientes")
+    public List<Libro> buscarLibrosRecientes() 
+    {
+        return libroService.getLibrosRecientes();
+    }
+    
+    @GetMapping("/cronologico")
+    public List<Libro> buscarLibrosCronologico() 
+    {
+        return libroService.getLibrosCronologico();
     }
     
 }

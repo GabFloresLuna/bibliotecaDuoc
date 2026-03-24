@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import com.example.bibliotecaDuoc.model.Libro;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 @Repository
@@ -29,6 +30,87 @@ public class LibroRepository
         listaLibros.add(new Libro(8, "9780134685991", "Clean Architecture", "Prentice Hall", 2017, "Robert C. Martin"));
         listaLibros.add(new Libro(9, "9780201633610", "Design Patterns", "AddisonWesley", 1994, "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides"));
         listaLibros.add(new Libro(10, "9780132350884", "Clean Code", "Prentice Hall", 2008, "Robert C. Martin"));
+    }
+
+    //Devuelve la fecha de publicaicón ordenada ascendente
+    public List<Libro> ordenCronologico()
+    {
+        List<Libro> listaOrdenada = listaLibros;
+        listaOrdenada.sort(Comparator.comparing(Libro::getFechaPublicacion));
+        return listaOrdenada;
+    }
+
+    //Devuelve la fecha de publicacion más reciente de entre todos los libros
+    public int fechaReciente()
+    {
+        int fechaReciente = listaLibros.get(0).getFechaPublicacion();
+        int fechaComparadora;
+
+        for (Libro libro : listaLibros)
+        {
+            fechaComparadora = libro.getFechaPublicacion();
+            if (fechaReciente < fechaComparadora)
+            {
+                fechaReciente = fechaComparadora;
+            }
+        }
+        return fechaReciente;
+    }
+
+    //Devuelve la fecha de publicacion más antigua de entre todos los libros
+    public int fechaAntigua()
+    {
+        int fechaMasAntigua = listaLibros.get(0).getFechaPublicacion();
+        int fechaComparadora;
+        
+        for (Libro libro : listaLibros)
+        {
+            fechaComparadora = libro.getFechaPublicacion();
+            if (fechaMasAntigua > fechaComparadora)
+            {
+                fechaMasAntigua = fechaComparadora;
+            }
+
+        }
+        return fechaMasAntigua;
+    }
+
+    // Libro(s) más Reciente(s)
+    public List<Libro> buscarLibroReciente()
+    {
+        List<Libro> librosAntiguos = new ArrayList<>();
+        int fechaReciente = fechaReciente();
+        int fechaComparadora;
+
+        for (Libro libro : listaLibros)
+            {
+                fechaComparadora = libro.getFechaPublicacion();
+                if (fechaReciente == fechaComparadora)
+                {
+                    librosAntiguos.add(libro);
+                }
+            } 
+
+        return librosAntiguos;
+    }
+
+    // Libro(s) más antiguo(s)
+    public List<Libro> buscarLibroAntiguo()
+    {
+        List<Libro> librosAntiguos = new ArrayList<>();
+        int fechaMasAntigua = fechaAntigua();
+        int fechaComparadora;
+
+        for (Libro libro : listaLibros)
+            {
+                fechaComparadora = libro.getFechaPublicacion();
+                if (fechaMasAntigua == fechaComparadora)
+                {
+                    librosAntiguos.add(libro);
+                }
+            } 
+
+        return librosAntiguos;
     }
 
     // Buscar libro por autor
